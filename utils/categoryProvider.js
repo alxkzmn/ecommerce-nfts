@@ -1,8 +1,13 @@
-import inventory from './inventory'
+/*
+ *   Copyright (c) 2021 JAMstack Ecommerce
+ *   All rights reserved.
+ *   SPDX-License-Identifier: MIT
+ */
+import inventory from "./inventory"
 
-async function fetchCategories () {
+async function fetchCategories() {
   const categories = inventory.reduce((acc, next) => {
-    next.categories.map(category => {
+    next.categories.map((category) => {
       if (acc.includes(category)) return
       acc.push(category)
     })

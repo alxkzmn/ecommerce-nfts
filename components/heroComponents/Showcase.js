@@ -1,4 +1,9 @@
-import Image from '../Image'
+/*
+ *   Copyright (c) 2021 JAMstack Ecommerce
+ *   All rights reserved.
+ *   SPDX-License-Identifier: MIT
+ */
+import Image from "../Image"
 
 const Showcase = ({ imageSrc }) => {
   return (

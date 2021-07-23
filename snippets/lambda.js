@@ -1,7 +1,12 @@
+/*
+ *   Copyright (c) 2021 JAMstack Ecommerce
+ *   All rights reserved.
+ *   SPDX-License-Identifier: MIT
+ */
 // https://stripe.com/docs/payments/without-card-authentication
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY) //"API_KEY"
 
-exports.handler = async event => {
+exports.handler = async (event) => {
   if (!event.body || event.httpMethod !== "POST") {
     return {
       statusCode: 400,
@@ -14,7 +19,7 @@ exports.handler = async event => {
 
   const order = JSON.parse(event.body)
 
-  const calculateOrderAmount = items => {
+  const calculateOrderAmount = (items) => {
     // Replace this constant with a calculation of the order's amount
     // You should always calculate the order total on the server to prevent
     // people from directly manipulating the amount on the client

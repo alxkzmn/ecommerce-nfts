@@ -1,4 +1,9 @@
-import inventory from './inventory'
+/*
+ *   Copyright (c) 2021 JAMstack Ecommerce
+ *   All rights reserved.
+ *   SPDX-License-Identifier: MIT
+ */
+import inventory from "./inventory"
 
 /*
 Inventory items should adhere to the following schema:
@@ -20,6 +25,4 @@ async function fetchInventory() {
   return Promise.resolve(inventory)
 }
 
-export {
-  fetchInventory, inventory as staticInventory
-}
+export { fetchInventory, inventory as staticInventory }

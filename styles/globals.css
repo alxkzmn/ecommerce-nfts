@@ -1,3 +1,8 @@
+/*
+ *   Copyright (c) 2021 JAMstack Ecommerce
+ *   All rights reserved.
+ *   SPDX-License-Identifier: MIT
+ */
 /* ./styles/globals.css */
 @tailwind base;
 @tailwind components;
@@ -7,7 +12,6 @@
   font-family: "Eina";
   src: url("/fonts/Eina.otf");
 }
-
 
 @font-face {
   font-family: "Eina Light";
@@ -20,8 +24,13 @@
 }
 
 @layer base {
-  p, h1, h2, h3, h4, h5 {
-    color: rgba(0, 0, 0, .8);
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: rgba(0, 0, 0, 0.8);
     font-family: Eina;
   }
 }

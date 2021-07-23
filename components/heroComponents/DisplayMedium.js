@@ -1,11 +1,18 @@
-import Image from '../Image'
-import Link from 'next/link'
+/*
+ *   Copyright (c) 2021 JAMstack Ecommerce
+ *   All rights reserved.
+ *   SPDX-License-Identifier: MIT
+ */
+import Image from "../Image"
+import Link from "next/link"
 
 const DisplayMedium = ({ imageSrc, title, subtitle, link }) => {
   return (
-    <div className="
+    <div
+      className="
     mb-4 lg:mb-0
-    bg-light p-8 pb-0 hover:bg-light-200">
+    bg-light p-8 pb-0 hover:bg-light-200"
+    >
       <Link href={`${link}`}>
         <a aria-label={title}>
           <div className="flex flex-column justify-center items-center h-56">
@@ -21,4 +28,4 @@ const DisplayMedium = ({ imageSrc, title, subtitle, link }) => {
   )
 }
 
-export default DisplayMedium;
+export default DisplayMedium
