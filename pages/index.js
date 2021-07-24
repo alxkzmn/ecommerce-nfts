@@ -2,6 +2,7 @@
  *   Copyright (c) 2021 JAMstack Ecommerce
  *   All rights reserved.
  *   SPDX-License-Identifier: MIT
+ *   Modified by: Alexander Kuzmin
  */
 import Head from "next/head"
 import {
@@ -25,12 +26,12 @@ const Home = ({ inventoryData = [], categories: categoryData = [] }) => {
       <CartLink />
       <div className="w-full">
         <Head>
-          <title>Jamstack ECommerce</title>
+          <title>BikeShop</title>
           <meta
             name="description"
-            content="Jamstack ECommerce Next provides a way to quickly get up and running with a fully configurable ECommerce site using Next.js."
+            content="Ride a BikeShop bike and have a smooth ride"
           />
-          <meta property="og:title" content="Jamstack ECommerce" key="title" />
+          <meta property="og:title" content="BikeShop" key="title" />
         </Head>
         <div
           className="bg-blue-300
@@ -38,16 +39,16 @@ const Home = ({ inventoryData = [], categories: categoryData = [] }) => {
         flex lg:flex-row flex-col"
         >
           <div className="pt-4 pl-2 sm:pt-12 sm:pl-12 flex flex-col">
-            <Tag year="2021" category="SOFAS" />
+            <Tag year="2021" category={inventory[1].categories[0]} />
             <Center
-              price="200"
-              title={inventory[2].name}
-              link={`/product/${slugify(inventory[2].name)}`}
+              price={inventory[1].price}
+              title={inventory[1].name}
+              link={`/product/${slugify(inventory[1].name)}`}
             />
             <Footer designer="Jason Bourne" />
           </div>
           <div className="flex flex-1 justify-center items-center relative">
-            <Showcase imageSrc={inventory[2].image} />
+            <Showcase imageSrc={inventory[1].image} />
             <div
               className="absolute
               w-48 h-48 sm:w-72 sm:h-72 xl:w-88 xl:h-88
@@ -56,31 +57,32 @@ const Home = ({ inventoryData = [], categories: categoryData = [] }) => {
           </div>
         </div>
       </div>
-      <div
-        className="
+      {categories.length > 1 && (
+        <div
+          className="
         lg:my-8 lg:grid-cols-2
         grid-cols-1
         grid gap-4 my-4 
       "
-      >
-        <DisplayMedium
-          imageSrc={categories[0].image}
-          subtitle={`${categories[0].itemCount} items`}
-          title={titleIfy(categories[0].name)}
-          link={`/category/${slugify(categories[0].name)}`}
-        />
-        <DisplayMedium
-          imageSrc={categories[1].image}
-          subtitle={`${categories[1].itemCount} items`}
-          title={titleIfy(categories[1].name)}
-          link={`/category/${slugify(categories[1].name)}`}
-        />
-      </div>
+        >
+          <DisplayMedium
+            imageSrc={categories[0].image}
+            subtitle={`${categories[0].itemCount} items`}
+            title={titleIfy(categories[0].name)}
+            link={`/category/${slugify(categories[0].name)}`}
+          />
+          <DisplayMedium
+            imageSrc={categories[2].image}
+            subtitle={`${categories[2].itemCount} items`}
+            title={titleIfy(categories[2].name)}
+            link={`/category/${slugify(categories[2].name)}`}
+          />
+        </div>
+      )}
       <div className="pt-10 pb-6 flex flex-col items-center">
         <h2 className="text-4xl mb-3">Trending Now</h2>
         <p className="text-gray-600 text-sm">
-          Find the perfect piece or accessory to finish off your favorite room
-          in the house.
+          Find the perfect bicycle for You.
         </p>
       </div>
       <div className="my-8 flex flex-col lg:flex-row justify-between">
@@ -104,13 +106,6 @@ const Home = ({ inventoryData = [], categories: categoryData = [] }) => {
           subtitle={inventory[2].categories[0]}
           link={`/product/${slugify(inventory[2].name)}`}
         />
-
-        <DisplaySmall
-          imageSrc={inventory[3].image}
-          title={inventory[3].name}
-          subtitle={inventory[3].categories[0]}
-          link={`/product/${slugify(inventory[3].name)}`}
-        />
       </div>
     </>
   )
@@ -119,25 +114,30 @@ const Home = ({ inventoryData = [], categories: categoryData = [] }) => {
 export async function getStaticProps() {
   const inventory = await fetchInventory()
 
-  const inventoryCategorized = inventory.reduce((acc, next) => {
-    const categories = next.categories
-    categories.forEach((c) => {
-      const index = acc.findIndex((item) => item.name === c)
-      if (index !== -1) {
-        const item = acc[index]
-        item.itemCount = item.itemCount + 1
-        acc[index] = item
-      } else {
-        const item = {
-          name: c,
-          image: next.image,
-          itemCount: 1,
+  const inventoryCategorized = inventory.reduce(
+    (acc, next) => {
+      const categories = next.categories
+
+      for (const c of categories)
+        (c) => {
+          const index = acc.findIndex((item) => item.name === c)
+          if (index !== -1) {
+            const item = acc[index]
+            item.itemCount = item.itemCount + 1
+            acc[index] = item
+          } else {
+            const item = {
+              name: c,
+              image: next.image,
+              itemCount: 1,
+            }
+            acc.push(item)
+          }
         }
-        acc.push(item)
-      }
-    })
-    return acc
-  }, [])
+      return acc
+    },
+    [inventory]
+  )
 
   return {
     props: {

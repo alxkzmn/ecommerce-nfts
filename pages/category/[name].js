@@ -2,6 +2,7 @@
  *   Copyright (c) 2021 JAMstack Ecommerce
  *   All rights reserved.
  *   SPDX-License-Identifier: MIT
+ *   Modified by: Alexander Kuzmin
  */
 import Head from "next/head"
 import ListItem from "../../components/ListItem"
@@ -16,13 +17,9 @@ const Category = (props) => {
     <>
       <CartLink />
       <Head>
-        <title>Jamstack ECommerce - {title}</title>
-        <meta name="description" content={`Jamstack ECommerce - ${title}`} />
-        <meta
-          property="og:title"
-          content={`Jamstack ECommerce - ${title}`}
-          key="title"
-        />
+        <title>BikeShop - {title}</title>
+        <meta name="description" content={`BikeShop - ${title}`} />
+        <meta property="og:title" content={`BikeShop - ${title}`} key="title" />
       </Head>
       <div className="flex flex-col items-center">
         <div className="max-w-fw flex flex-col w-full">

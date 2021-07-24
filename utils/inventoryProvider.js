@@ -2,8 +2,8 @@
  *   Copyright (c) 2021 JAMstack Ecommerce
  *   All rights reserved.
  *   SPDX-License-Identifier: MIT
+ *   Modified by Alexander Kuzmin
  */
-import inventory from "./inventory"
 
 /*
 Inventory items should adhere to the following schema:
@@ -21,8 +21,9 @@ type Product {
 */
 
 async function fetchInventory() {
-  // const inventory = API.get(apiUrl)
-  return Promise.resolve(inventory)
+  const res = await fetch("http://localhost:5000/inventory")
+  const data = await res.json()
+  return data
 }
 
-export { fetchInventory, inventory as staticInventory }
+export { fetchInventory }

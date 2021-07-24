@@ -2,6 +2,7 @@
  *   Copyright (c) 2021 JAMstack Ecommerce
  *   All rights reserved.
  *   SPDX-License-Identifier: MIT
+ *   Modified by: Alexander Kuzmin
  */
 import Link from "next/link"
 import { useState, useEffect } from "react"
@@ -42,16 +43,9 @@ const Cart = ({ context }) => {
       <CartLink />
       <div className="flex flex-col items-center pb-10">
         <Head>
-          <title>Jamstack ECommerce - Cart</title>
-          <meta
-            name="description"
-            content={`Jamstack ECommerce - Shopping cart`}
-          />
-          <meta
-            property="og:title"
-            content="Jamstack ECommerce - Cart"
-            key="title"
-          />
+          <title>BikeShop - Cart</title>
+          <meta name="description" content={`BikeShop - Shopping cart`} />
+          <meta property="og:title" content="BikeShop - Cart" key="title" />
         </Head>
         <div
           className="

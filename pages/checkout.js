@@ -2,6 +2,7 @@
  *   Copyright (c) 2021 JAMstack Ecommerce
  *   All rights reserved.
  *   SPDX-License-Identifier: MIT
+ *   Modified by: Alexander Kuzmin
  */
 import { useState } from "react"
 import Head from "next/head"
@@ -134,13 +135,9 @@ const Checkout = ({ context }) => {
   return (
     <div className="flex flex-col items-center pb-10">
       <Head>
-        <title>Jamstack ECommerce - Checkout</title>
+        <title>BikeShop - Checkout</title>
         <meta name="description" content={`Check out`} />
-        <meta
-          property="og:title"
-          content="Jamstack ECommerce - Checkpit"
-          key="title"
-        />
+        <meta property="og:title" content="BikeShop - Checkpit" key="title" />
       </Head>
       <div
         className="

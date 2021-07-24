@@ -2,6 +2,7 @@
  *   Copyright (c) 2021 JAMstack Ecommerce
  *   All rights reserved.
  *   SPDX-License-Identifier: MIT
+ *   Modified by: Alexander Kuzmin
  */
 import Link from "next/link"
 import { slugify } from "../utils/helpers"
@@ -87,7 +88,7 @@ export default function Layout({ children, categories }) {
         border-t border-gray-300"
         >
           <span className="block text-gray-700 text-xs">
-            Copyright © 2021 JAMstack Ecommerce. All rights reserved.
+            Copyright © 2021 Alexander Kuzmin. All rights reserved.
           </span>
           <div
             className="

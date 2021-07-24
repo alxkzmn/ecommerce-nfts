@@ -2,6 +2,7 @@
  *   Copyright (c) 2021 JAMstack Ecommerce
  *   All rights reserved.
  *   SPDX-License-Identifier: MIT
+ *   Modified by: Alexander Kuzmin
  */
 import React from "react"
 import SignUp from "../components/formComponents/SignUp"
@@ -10,7 +11,9 @@ import SignIn from "../components/formComponents/SignIn"
 import Inventory from "../components/Inventory"
 
 class Admin extends React.Component {
-  state = { formState: "signUp", isAdmin: false }
+  //TODO real signIn sdfg sdf s f asd as as as
+  //state = { formState: 'signUp', isAdmin: false }
+  state = { formState: "signedIn", isAdmin: true }
   toggleFormState = (formState) => {
     this.setState(() => ({ formState }))
   }

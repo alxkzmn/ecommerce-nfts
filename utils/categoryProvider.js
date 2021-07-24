@@ -2,10 +2,12 @@
  *   Copyright (c) 2021 JAMstack Ecommerce
  *   All rights reserved.
  *   SPDX-License-Identifier: MIT
+ *   Modified by: Alexander Kuzmin
  */
-import inventory from "./inventory"
+import { fetchInventory } from "./inventoryProvider"
 
 async function fetchCategories() {
+  const inventory = await fetchInventory()
   const categories = inventory.reduce((acc, next) => {
     next.categories.map((category) => {
       if (acc.includes(category)) return

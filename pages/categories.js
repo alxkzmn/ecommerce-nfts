@@ -2,6 +2,7 @@
  *   Copyright (c) 2021 JAMstack Ecommerce
  *   All rights reserved.
  *   SPDX-License-Identifier: MIT
+ *   Modified by: Alexander Kuzmin
  */
 import Head from "next/head"
 import { titleIfy, slugify } from "../utils/helpers"
@@ -15,14 +16,11 @@ function Categories({ categories = [] }) {
       <div className="w-full">
         <CartLink />
         <Head>
-          <title>Jamstack ECommerce - All Categories</title>
-          <meta
-            name="description"
-            content={`Jamstack ECommerce - All categories`}
-          />
+          <title>BikeShop - All Categories</title>
+          <meta name="description" content={`BikeShop - All categories`} />
           <meta
             property="og:title"
-            content="Jamstack ECommerce - All Categories"
+            content="BikeShop - All Categories"
             key="title"
           />
         </Head>

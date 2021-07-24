@@ -2,15 +2,18 @@
  *   Copyright (c) 2021 JAMstack Ecommerce
  *   All rights reserved.
  *   SPDX-License-Identifier: MIT
+ *   Modified by Alexander Kuzmin
  */
 import React from "react"
+import Image from "../../components/Image"
 
 const initialState = {
   name: "",
   brand: "",
   price: "",
   categories: [],
-  image: "",
+  image: null,
+  imagePath: null,
   description: "",
   currentInventory: "",
 }
@@ -24,20 +27,30 @@ class AddInventory extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
   onImageChange = async (e) => {
-    const file = e.target.files[0]
-    this.setState({ image: file })
+    this.readURI(e)
     // const storageUrl = await Storage.put('example.png', file, {
     //     contentType: 'image/png'
     // })
     // this.setState({ image: storageUrl  })
   }
-  addItem = async () => {
+  async readURI(e) {
+    if (e.target.files && e.target.files[0]) {
+      let reader = new FileReader()
+      reader.onload = function (ev) {
+        console.log(reader.result)
+        this.setState({ image: reader.result })
+      }.bind(this)
+      reader.readAsDataURL(e.target.files[0])
+    }
+  }
+  addItem = () => {
     const {
       name,
       brand,
       price,
       categories,
       image,
+      imagePath,
       description,
       currentInventory,
     } = this.state
@@ -51,9 +64,28 @@ class AddInventory extends React.Component {
       !image
     )
       return
-    // add to database
+    const item = {
+      name,
+      brand,
+      price,
+      categories,
+      imagePath,
+      description,
+      currentInventory,
+    }
+    this.addNewItem(item)
     this.clearForm()
   }
+
+  addNewItem = async (item) => {
+    const res = await fetch("http://localhost:5000/inventory", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(item),
+    })
+    const data = await res.json()
+  }
+
   render() {
     const {
       name,
@@ -61,6 +93,7 @@ class AddInventory extends React.Component {
       price,
       categories,
       image,
+      imagePath,
       description,
       currentInventory,
     } = this.state
@@ -120,6 +153,17 @@ class AddInventory extends React.Component {
                   name="description"
                 />
               </div>
+              {(image || imagePath) && (
+                <div className="w-full md:w-1/2 h-120 flex flex-1 bg-light hover:bg-light-200">
+                  <div className="py-16 p10 flex flex-1 justify-center items-center">
+                    <Image
+                      src={image ?? imagePath}
+                      alt="Inventory item"
+                      className="max-h-full"
+                    />
+                  </div>
+                </div>
+              )}
               <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"

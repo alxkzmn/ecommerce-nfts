@@ -2,6 +2,7 @@
  *   Copyright (c) 2021 JAMstack Ecommerce
  *   All rights reserved.
  *   SPDX-License-Identifier: MIT
+ *   Modified by: Alexander Kuzmin
  */
 import { useState } from "react"
 import Head from "next/head"
@@ -17,7 +18,7 @@ import {
 } from "../../context/mainContext"
 
 const ItemView = (props) => {
-  const [numberOfitems, updateNumberOfItems] = useState(1)
+  const [numberOfItems, updateNumberOfItems] = useState(1)
   const { product } = props
   const { price, image, name, description } = product
   const {
@@ -25,30 +26,26 @@ const ItemView = (props) => {
   } = props
 
   function addItemToCart(product) {
-    product["quantity"] = numberOfitems
+    product["quantity"] = numberOfItems
     addToCart(product)
   }
 
   function increment() {
-    updateNumberOfItems(numberOfitems + 1)
+    updateNumberOfItems(numberOfItems + 1)
   }
 
   function decrement() {
-    if (numberOfitems === 1) return
-    updateNumberOfItems(numberOfitems - 1)
+    if (numberOfItems === 1) return
+    updateNumberOfItems(numberOfItems - 1)
   }
 
   return (
     <>
       <CartLink />
       <Head>
-        <title>Jamstack ECommerce - {name}</title>
+        <title>BikeShop - {name}</title>
         <meta name="description" content={description} />
-        <meta
-          property="og:title"
-          content={`Jamstack ECommerce - ${name}`}
-          key="title"
-        />
+        <meta property="og:title" content={`BikeShop - ${name}`} key="title" />
       </Head>
       <div
         className="
@@ -76,7 +73,7 @@ const ItemView = (props) => {
             <QuantityPicker
               increment={increment}
               decrement={decrement}
-              numberOfitems={numberOfitems}
+              numberOfitems={numberOfItems}
             />
           </div>
           <Button

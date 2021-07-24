@@ -1,0 +1,34 @@
+{
+  "inventory": [
+    {
+      "categories": ["mountain bikes"],
+      "name": "M0 Xtreme",
+      "price": "1000",
+      "image": "/products/mountain-bike.png",
+      "description": "The M0 Xtreme boasts the latest performance technology to help you cover ground quickly and efficiently. With a lightweight aluminium frame and durable suspension forks, this mountain bike is up for any terrain.",
+      "brand": "Jason Bourne",
+      "currentInventory": 4,
+      "id": "3333243e-4366-4907-a9fc-d85fa4dd3b33"
+    },
+    {
+      "categories": ["electric bikes"],
+      "name": "M1 Electra",
+      "price": "1500",
+      "image": "/products/electric-bike.png",
+      "description": "The M1 Electra is the perfect solution to your daily commute. This electric bicycle has a powerful battery that goes for 50 km on one full charge. The charging time is only 1 hour, so you don't have to worry about it running out of juice. Fun and affordable transportation, just what you need.",
+      "brand": "Jason Bourne",
+      "currentInventory": 2,
+      "id": "9d5d51d7-21c7-4cce-a312-5ad441a64ef1"
+    },
+    {
+      "categories": ["new arrivals", "city bike"],
+      "name": "M2 QT",
+      "price": "700",
+      "image": "/products/qt-bike.png",
+      "description": "The M2 QT is a charming city bike. With a range of frame colors, the cutie is suitable for everyone. It's easy to mount and even easier to ride. Foldable and with an anti-theft lock, it's perfect for all your daily commutes.",
+      "brand": "Jason Bourne",
+      "currentInventory": 8,
+      "id": "35470430-1f6e-4c09-8b47-8f6c3517574a"
+    }
+  ]
+}
