@@ -4,11 +4,20 @@
  *   SPDX-License-Identifier: MIT
  */
 const hre = require("hardhat")
+const fs = require("fs")
+
 async function main() {
-  const NFT = await hre.ethers.getContractFactory("MyNFT")
+  const NFT = await hre.ethers.getContractFactory("NFT")
   const nft = await NFT.deploy()
   await nft.deployed()
   console.log("NFT deployed to:", nft.address)
+
+  let config = `
+  export const nftaddress = "${nft.address}"
+  `
+
+  let data = JSON.stringify(config)
+  fs.writeFileSync("config.js", JSON.parse(data))
 }
 main()
   .then(() => process.exit(0))

@@ -172,7 +172,7 @@ const Cart = ({ context }) => {
               <a aria-label="Check out">
                 <div className="cursor-pointer flex items-center">
                   <p className="text-gray-600 text-sm mr-2">
-                    Proceed to check out
+                    Proceed to checkout
                   </p>
                   <FaLongArrowAltRight className="text-gray-600" />
                 </div>

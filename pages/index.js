@@ -33,29 +33,31 @@ const Home = ({ inventoryData = [], categories: categoryData = [] }) => {
           />
           <meta property="og:title" content="BikeShop" key="title" />
         </Head>
-        <div
-          className="bg-blue-300
+        {inventory.length > 0 && (
+          <div
+            className="bg-blue-300
         p-6 pb-10 smpb-6
         flex lg:flex-row flex-col"
-        >
-          <div className="pt-4 pl-2 sm:pt-12 sm:pl-12 flex flex-col">
-            <Tag year="2021" category={inventory[1].categories[0]} />
-            <Center
-              price={inventory[1].price}
-              title={inventory[1].name}
-              link={`/product/${slugify(inventory[1].name)}`}
-            />
-            <Footer designer="Jason Bourne" />
-          </div>
-          <div className="flex flex-1 justify-center items-center relative">
-            <Showcase imageSrc={inventory[1].image} />
-            <div
-              className="absolute
+          >
+            <div className="pt-4 pl-2 sm:pt-12 sm:pl-12 flex flex-col">
+              <Tag year="2021" category={inventory[1].categories[0]} />
+              <Center
+                price={inventory[1].price}
+                title={inventory[1].name}
+                link={`/product/${slugify(inventory[1].name)}`}
+              />
+              <Footer designer="Jason Bourne" />
+            </div>
+            <div className="flex flex-1 justify-center items-center relative">
+              <Showcase imageSrc={inventory[1].image} />
+              <div
+                className="absolute
               w-48 h-48 sm:w-72 sm:h-72 xl:w-88 xl:h-88
               bg-white z-0 rounded-full"
-            />
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
       {categories.length > 1 && (
         <div
@@ -80,33 +82,41 @@ const Home = ({ inventoryData = [], categories: categoryData = [] }) => {
         </div>
       )}
       <div className="pt-10 pb-6 flex flex-col items-center">
-        <h2 className="text-4xl mb-3">Trending Now</h2>
-        <p className="text-gray-600 text-sm">
-          Find the perfect bicycle for You.
-        </p>
+        <h2 className="text-4xl mb-3">
+          {inventory.length > 0
+            ? "Trending Now"
+            : "We are expecting a restock soon, please come back later"}
+        </h2>
+        {inventory.length > 0 && (
+          <p className="text-gray-600 text-sm">
+            Find the perfect bicycle for You.
+          </p>
+        )}
       </div>
-      <div className="my-8 flex flex-col lg:flex-row justify-between">
-        <DisplaySmall
-          imageSrc={inventory[0].image}
-          title={inventory[0].name}
-          subtitle={inventory[0].categories[0]}
-          link={`/product/${slugify(inventory[0].name)}`}
-        />
+      {inventory.length > 0 && (
+        <div className="my-8 flex flex-col lg:flex-row justify-between">
+          <DisplaySmall
+            imageSrc={inventory[0].image}
+            title={inventory[0].name}
+            subtitle={inventory[0].categories[0]}
+            link={`/product/${slugify(inventory[0].name)}`}
+          />
 
-        <DisplaySmall
-          imageSrc={inventory[1].image}
-          title={inventory[1].name}
-          subtitle={inventory[1].categories[0]}
-          link={`/product/${slugify(inventory[1].name)}`}
-        />
+          <DisplaySmall
+            imageSrc={inventory[1].image}
+            title={inventory[1].name}
+            subtitle={inventory[1].categories[0]}
+            link={`/product/${slugify(inventory[1].name)}`}
+          />
 
-        <DisplaySmall
-          imageSrc={inventory[2].image}
-          title={inventory[2].name}
-          subtitle={inventory[2].categories[0]}
-          link={`/product/${slugify(inventory[2].name)}`}
-        />
-      </div>
+          <DisplaySmall
+            imageSrc={inventory[2].image}
+            title={inventory[2].name}
+            subtitle={inventory[2].categories[0]}
+            link={`/product/${slugify(inventory[2].name)}`}
+          />
+        </div>
+      )}
     </>
   )
 }

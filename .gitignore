@@ -37,3 +37,7 @@ yarn-error.log*
 # serverless
 .serverless
 .serverless_nextjs
+
+#Hardhat files
+cache
+artifacts
